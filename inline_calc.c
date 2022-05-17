@@ -10,8 +10,11 @@ int main(void)
 
     system("color 1e");
 
-    printf("Dear user:\n\t This program working with integer numbers only\n\t If you Enter number > 5 digits, I'll ignore the above five\n");
+    printf("Dear user:\n\t This program working with positive decimal integer numbers only\n");
+    printf("\t If you enter number > 5 digits, I'll ignore the above five\n");
+    printf("\t If you enter null, I'll consider it Zero\n");
     printf("\t So, Take care to get the correct result\n\n");
+
     printf("Please Enter Eq: ");
     scanf("%[^\n]s",str);
 
@@ -69,8 +72,15 @@ int main(void)
         case '+': result = fst + scd; break;
         case '-': result = fst - scd; break;
         case '*': result = fst * scd; break;
-        case '/': result = fst / scd; break;
-        default: printf("Invalid operation\n"); exit(1);
+        case '/':
+            if(scd > 0 || scd < 0) result = fst / scd;
+            else if (scd == 0)
+            {
+                printf("Divided by Zero\n");
+                exit(1);
+            }
+            break;
+        default: printf("Invalid operation\n"); exit(2);
     }
 
     printf("Result = %d\n",result);
